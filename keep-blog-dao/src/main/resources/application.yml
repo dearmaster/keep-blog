@@ -1,0 +1,18 @@
+runMode: local
+
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+  datasource:
+    schema: classpath*:configuration/local/schema-local.sql
+    data: classpath*:configuration/local/data-local.sql
+    initialization-mode: always
+logging:
+  level:
+    root: info
+    com.master: debug
+    spring.jiminshiro.mapper: debug

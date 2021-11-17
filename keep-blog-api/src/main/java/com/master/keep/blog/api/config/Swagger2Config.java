@@ -1,4 +1,4 @@
-package com.master.keep.blog.config;
+package com.master.keep.blog.api.config;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
