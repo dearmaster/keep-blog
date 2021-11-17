@@ -11,7 +11,7 @@
 
 ### local 开发不需要验证权限，其他环境如dev uat prod需要验证权限
 
-http://localhost:8080/swagger-ui.html
+http://localhost:8001/swagger-ui.html
 
 ### Druid密码加密
 set Path=%PATH%;D:\devsoft\Java\jdk1.8.0_231\bin
@@ -47,3 +47,17 @@ druid monitor: admin/admin123
 
 set Path=%PATH%;D:\devsoft\Java\jdk1.8.0_231\bin
 java -cp D:\devsoft\.m2\repository\com\h2database\rh2\1.4.200\h2-1.4.200.jar org.h2.tools.Console -tcpAllowOthers -webAllowOthers -webPort 8082
+
+http://localhost:8001/druid/index.html
+
+http://localhost:8001/category/loadAll
+
+
+curl -H 'Authorization:Basic Y2xpZW50LTE6c2VjcmV0LTE=' -i -d "grant_type=password&scope=all&username=lily&password=abc" http://localhost:7001/oauth/token
+
+curl -i -d "grant_type=password&scope=all&username=lily&password=abc&client_id=client-1&client_secret=secret-1" http://localhost:7001/oauth/token
+
+
+login h2 console
+jdbc:h2:file:D:/devsoft/db/devDb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;
+jdbc:h2:file:D:/devsoft/db/securityDb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;

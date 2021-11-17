@@ -1,4 +1,6 @@
-runMode: local
+keep:
+  runMode: local
+  db: common_data
 
 
 spring:
@@ -10,8 +12,8 @@ server:
 spring:
   profiles: local
   datasource:
-    schema: classpath*:configuration/local/schema-local.sql
-    data: classpath*:configuration/local/data-local.sql
+    schema: classpath*:configuration/local/schema.sql
+    data: classpath*:configuration/local/data.sql
     initialization-mode: always
 logging:
   level:
