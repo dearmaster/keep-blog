@@ -52,11 +52,17 @@ http://localhost:8001/druid/index.html
 
 http://localhost:8001/category/loadAll
 
+curl -i http://localhost:8001/article/loadAll
 
-curl -H 'Authorization:Basic Y2xpZW50LTE6c2VjcmV0LTE=' -i -d "grant_type=password&scope=all&username=lily&password=abc" http://localhost:7001/oauth/token
+curl -i http://localhost:8001/category/loadAll
 
-curl -i -d "grant_type=password&scope=all&username=lily&password=abc&client_id=client-1&client_secret=secret-1" http://localhost:7001/oauth/token
 
+
+curl -H 'Authorization:Basic Y2xpZW50LTE6c2VjcmV0LTE=' -i -d "grant_type=password&scope=all&username=lily&password=abc" http://localhost:7001/auth/oauth/token
+
+curl -i -d "grant_type=password&scope=all&username=lily&password=abc&client_id=client-1&client_secret=secret-1" http://localhost:7001/auth/oauth/token
+
+curl -i http://localhost:8001/category/loadAll -H "Authorization: Bearer fcfca132-f999-4ee2-b148-871edf183f70"
 
 login h2 console
 jdbc:h2:file:D:/devsoft/db/devDb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;
