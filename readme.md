@@ -46,7 +46,7 @@ password:XGH1plMysadHSIpHpV9l03q73fH+ztdxDomFWZddQRGIsePz7zKzrwlYT1e3ZKfRl0zXNYR
 druid monitor: admin/admin123
 
 set Path=%PATH%;D:\devsoft\Java\jdk1.8.0_231\bin
-java -cp D:\devsoft\.m2\repository\com\h2database\rh2\1.4.200\h2-1.4.200.jar org.h2.tools.Console -tcpAllowOthers -webAllowOthers -webPort 8082
+java -cp D:\devsoft\.m2\repository\com\h2database\h2\1.4.200\h2-1.4.200.jar org.h2.tools.Console -tcpAllowOthers -webAllowOthers -webPort 8082
 
 http://localhost:8001/druid/index.html
 
@@ -62,7 +62,9 @@ curl -H 'Authorization:Basic Y2xpZW50LTE6c2VjcmV0LTE=' -i -d "grant_type=passwor
 
 curl -i -d "grant_type=password&scope=all&username=lily&password=abc&client_id=client-1&client_secret=secret-1" http://localhost:7001/auth/oauth/token
 
-curl -i http://localhost:8001/category/loadAll -H "Authorization: Bearer fcfca132-f999-4ee2-b148-871edf183f70"
+curl -i -d "grant_type=password&scope=all&username=jay&password=abc&client_id=client-1&client_secret=secret-1" http://localhost:7001/auth/oauth/token
+
+curl -i http://localhost:8001/category/loadAll -H "Authorization: Bearer 8552c040-853f-4ad9-bfc0-83a88dac1e22"
 
 login h2 console
 jdbc:h2:file:D:/devsoft/db/devDb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;

@@ -2,6 +2,7 @@ package com.master.keep.blog.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 
 @Configuration
 @EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Bean
@@ -28,18 +30,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
-                .requestMatchers().anyRequest()
-                .and()
-                .anonymous()
-                .and()
                 .authorizeRequests()
-                .antMatchers("/article/**").permitAll()
-                .antMatchers("/category/**").access("#oauth2.hasScope('all')")
-                .anyRequest().authenticated();
+                .anyRequest().permitAll();
     }
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.tokenServices(tokenServices());
+        resources.tokenServices(tokenServices()).resourceId("resource-1");
     }
+
 }
