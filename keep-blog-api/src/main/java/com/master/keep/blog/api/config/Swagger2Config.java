@@ -1,10 +1,8 @@
 package com.master.keep.blog.api.config;
 
-import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.service.ApiInfo;
@@ -17,7 +15,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.common.base.Predicates.not;
+import static com.google.common.base.Predicates.or;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
+import static springfox.documentation.builders.PathSelectors.regex;
 
 @Configuration
 @EnableSwagger2
@@ -44,8 +45,8 @@ public class Swagger2Config {
                  * 不指定监控package
                  */
                 .apis(RequestHandlerSelectors.any())
-                .paths(Predicates.not(PathSelectors.regex("/error.*")))//错误路径不监控
-                .paths(PathSelectors.regex("/.*")) // 对根下所有路径进行监控
+                .paths(not(or(regex("/error.*"), regex("/actuator.*"))))//路径不监控
+                .paths(regex("/.*")) // 对根下所有路径进行监控
                 .build();
 
                 //.apis(RequestHandlerSelectors.basePackage("com.master.keep.blog"))
