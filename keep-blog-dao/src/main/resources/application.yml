@@ -1,5 +1,4 @@
 keep:
-  runMode: local
   db: common_data
 
 spring:
